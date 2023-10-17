@@ -5,7 +5,7 @@ using namespace std;
 #define endl "\n"
 #define IOS ios_base::sync_with_stdio(0); cin.tie(0); cout.tie(0);
  
-signed main()
+int32_t main()
 {
     IOS
  
@@ -35,9 +35,11 @@ signed main()
                 int mi = max_element(card.begin(), card.begin()+i) - card.begin();
                 power += me;
                 card.erase(card.begin()+mi);
-                n--; i--;
+                n--;
+                i--;
             }
-        } 
+        }
+ 
         cout << power << endl;
     }
  
