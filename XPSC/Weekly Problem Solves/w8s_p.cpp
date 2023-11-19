@@ -1,6 +1,8 @@
 #include <bits/stdc++.h>
 using namespace std;
 
+#define int long long
+#define endl "\n"
 #define SSK ios_base::sync_with_stdio(0); cin.tie(0);
 
 signed main()
@@ -11,14 +13,24 @@ signed main()
     while(t--)
     {
         int n; cin >> n;
-        int a = n/2, b = (n/2)-1;
-        if(n%2)
+
+        map<int,int> f, fof;
+        for(int i=0; i<n; i++)
         {
-            a = (n-1)/2 - 1;
-            b = (n-1)/2 + 1;
-            if((n-1)%4){ a--; b++; }
+            int a; cin >> a;
+            f[a]++;
         }
-        cout << a << " " << b << " 1\n";
+        for(auto x : f) fof[x.second]++;
+
+        int l=0, r=n, ans=n, rem=f.size();
+        for(auto [x,y]: fof)
+        {
+            ans = min(ans, l+r - rem*x);
+            l += (x*y);
+            r -= (x*y);
+            rem -= y;
+        }
+        cout << ans << endl;
     }
 
     return 0;
